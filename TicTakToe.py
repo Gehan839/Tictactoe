@@ -95,7 +95,7 @@ while(leaveLoop == False):
   if(turnCounter % 2 == 0):
     printGameBoard()
     numberPicked = int(input("\nChoose a number [1-9]: "))
-    if(numberPicked >= 1 or numberPicked <= 9):
+    if(numberPicked >= 1 and numberPicked <= 9):
       modifyArray(numberPicked, 'X')
       possibleNumbers.remove(numberPicked)
     else:
@@ -114,4 +114,5 @@ while(leaveLoop == False):
   winner = checkForWinner(gameBoard)
   if(winner != "N"):
     print("\nGame over! Thank you for playing :)")
+    print("\n If you would like to play another round press the run python file button on the top right." )
     break      
