@@ -89,30 +89,29 @@ def checkForWinner(gameBoard):
 
 leaveLoop = False
 turnCounter = 0
-
 while(leaveLoop == False):
-  ### It's the player turn
-  if(turnCounter % 2 == 0):
-    printGameBoard()
-    numberPicked = int(input("\nChoose a number [1-9]: "))
-    if(numberPicked >= 1 and numberPicked <= 9):
-      modifyArray(numberPicked, 'X')
-      possibleNumbers.remove(numberPicked)
-    else:
-      print("Invalid input. Please try again.")
-    turnCounter += 1
-  ### It's the computer's turn
-  else:
-    while(True):
-      cpuChoice = random.choice(possibleNumbers)
-      print("\nCpu choice: ", cpuChoice)
-      if(cpuChoice in possibleNumbers):
-        modifyArray(cpuChoice, 'O')
-        possibleNumbers.remove(cpuChoice)
+    ### It's the player turn
+    if(turnCounter % 2 == 0):
+        printGameBoard()
+        numberPicked = int(input("\nChoose a number [1-9]: "))
+        if(numberPicked >= 1 and numberPicked <= 9 and numberPicked in possibleNumbers):
+            modifyArray(numberPicked, 'X')
+            possibleNumbers.remove(numberPicked)
+        else:
+            print("Invalid input. Please try again.")
         turnCounter += 1
+    ### It's the computer's turn
+    else:
+        while(True):
+            cpuChoice = random.choice(possibleNumbers)
+            print("\nCpu choice: ", cpuChoice)
+            if(cpuChoice in possibleNumbers):
+                modifyArray(cpuChoice, 'O')
+                possibleNumbers.remove(cpuChoice)
+                turnCounter += 1
+                break
+    winner = checkForWinner(gameBoard)
+    if(winner != "N"):
+        print("\nGame over! Thank you for playing :)")
+        print("\n If you would like to play another round press the run python file button on the top right." )
         break
-  winner = checkForWinner(gameBoard)
-  if(winner != "N"):
-    print("\nGame over! Thank you for playing :)")
-    print("\n If you would like to play another round press the run python file button on the top right." )
-    break      
